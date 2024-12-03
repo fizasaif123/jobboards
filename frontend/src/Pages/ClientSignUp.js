@@ -48,9 +48,7 @@ const RegisterForm = () => {
             setError("Unable to fetch location details. Please try again.");
           }
         },
-        (err) => {
-          setError("Unable to detect location. Please allow location access.");
-        }
+       
       );
     } else {
       setError("Geolocation is not supported by this browser.");
