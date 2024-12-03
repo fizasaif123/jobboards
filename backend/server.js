@@ -18,12 +18,24 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose
-  .connect("mongodb://localhost:27017/jobboardgreenblue", { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
 
+
+mongoose.connect("mongodb+srv://fizasaif0233:Bh6EZ5mJi0eXSbTR@cluster0.z92ld.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+  
+});
+
+
+
+
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
+  
 // Routes
+
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
 
@@ -31,7 +43,6 @@ app.use("/api/jobs", jobRoutes);
 app.get("/", (req, res) => {
   res.send("Job Board Backend is running!");
 });
-console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
 // Start server
 const PORT = process.env.PORT || 9000;
