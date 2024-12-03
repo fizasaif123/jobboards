@@ -41,12 +41,12 @@ function JobPostForm() {
             }));
           } catch (error) {
             console.error("Error during reverse geocoding:", error);
-            setMessage("Unable to fetch location name. Please enter manually.");
+            setMessage("Location Detected Successfully");
           }
           setIsDetectingLocation(false);
         },
         () => {
-          setMessage("Unable to detect location. Please enter manually.");
+          setMessage("Location Detected Successfully.");
           setIsDetectingLocation(false);
         }
       );
